@@ -1,0 +1,30 @@
+<?php
+$customerEmails = $this->getCustomerEmails();
+?>
+<div class="admin__field-control">
+    <div class="admin__action-multiselect-wrap action-select-wrap _active" tabindex="0">
+        <div class="action-select admin__action-multiselect">
+            <div class="admin__action-multiselect-text" id="customer-email-txt"></div>
+        </div>
+        <div class="action-menu _active">
+            <div class="admin__action-multiselect-search-wrap">
+                <input class="admin__control-text admin__action-multiselect-search" id="customer-email-searching" type="text">
+                <label class="admin__action-multiselect-search-label">
+                </label>
+            </div>
+            <ul class="admin__action-multiselect-menu-inner _root" id="customer-email-listing">
+                <?php if ($customerEmails): ?>
+                <?php foreach ($customerEmails as $email):?>
+                    <li class="admin__action-multiselect-menu-inner-item _root">
+                        <div class="action-menu-item _last">
+                            <label class="admin__action-multiselect-label customer-email-lb">
+                                <span><?= $email ?></span>
+                            </label>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </div>
+</div>

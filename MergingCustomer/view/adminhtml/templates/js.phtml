@@ -1,0 +1,98 @@
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/confirm'
+    ], function($, confirmation){
+        var callAjx = function (url, data, type, callback) {
+            $.ajax({
+                url: url,
+                data: data,
+                type: type,
+                dataType: 'json',
+                cache: false,
+                showLoader: true,
+                timeout: 10000
+            }).done(function(response) {
+                callback(response);
+            });
+        }
+        $('.action-menu').hide();
+
+        $('#merging_merge_customer').on('click',  function(){
+            if ($('input[name=from]').val().length > 0) {
+                confirmation({
+                    title: 'Merge Customer',
+                    content: 'Do you want to merge 2 customers ?',
+                    actions: {
+                        confirm: function () {
+                            let url = '<?=$this->getUrl('customer/merging/save')?>';
+                            let data = {
+                                form_key: window.FORM_KEY,
+                                merging_customer:
+                                {
+                                    from: $('input[name=from]').val(),
+                                    customer_id: <?=$this->getCustomerId()?>
+                                }
+                            };
+                            callAjx(url, data, 'POST', function(response){
+                                $('.merging-customer-message').remove();
+                                if (response.success == 1) {
+                                    $('#merging_customer_form').prepend('<div class="message message-success merging-customer-message">'+response.message+'</div>');
+                                    mergingCustomerGridJsObject.resetFilter();
+                                    $('#customer-email-txt').text("");
+                                    $('input[name=from]').val("");
+                                }
+                                else {
+                                    $('#merging_customer_form').prepend('<div class="message message-error merging-customer-message">'+response.message+'</div>');
+                                }
+                            });
+                        },
+                        cancel: function () {},
+                    }
+                });
+            }
+            else {
+                alert('Please select a customer');
+            }
+        });
+
+        $('#customer-email-searching').blur(function(){
+            if ($(this).val().length > 0) {
+                let url = '<?=$this->getUrl('customer/merging/getcustomeremail')?>';
+                let data = 'email='+$(this).val()+'&master_customer=<?=$this->getCustomerEmail()?>';
+                callAjx(url, data, 'GET', function(response){
+                    if (response.html) {
+                        var elm = $('<div/>').html(response.html).find('#customer-email-listing');
+                        $('#customer-email-listing').html(elm.html());
+                    }
+                });
+            }
+        });
+
+        $('body').on('click', '#customer-email-listing li', function(){
+            $('#customer-email-listing').find('.action-menu-item').removeClass('_selected');
+            let divElm = $(this).find('.action-menu-item');
+            divElm.addClass('_selected');
+            let email = divElm.find('span').text();
+            $('#customer-email-txt').text(email);
+            $('input[name=from]').val(email);
+            $('.action-menu').hide();
+        });
+
+        $('.action-select').click(function(){
+            if ($('.action-menu').is(":visible")) {
+                $('.action-menu').hide();
+            }
+            else{
+                $('.action-menu').show();
+            }
+        })
+
+        $('body').on('mouseenter', '#customer-email-listing li', function(){
+            $(this).find('.action-menu-item').addClass('_hover');
+        });
+        $('body').on('mouseleave', '#customer-email-listing li', function(){
+            $(this).find('.action-menu-item').removeClass('_hover');
+        });
+    });
+</script>

@@ -1,0 +1,19 @@
+<div id="customerEmail" data-bind="scope:'customerEmail'">
+	<!-- ko template: getTemplate() --><!-- /ko -->
+	<script type="text/x-magento-init">
+	{
+	    "#customerEmail": {
+	        "Magento_Ui/js/core/app": {
+	            "components": {
+	                "customerEmail": {
+	                    "component": "Axl_MergingCustomer/js/view/email",
+	                    "config": {
+                            'test': 'test'
+						}
+	                }
+	            }
+	        }
+	    }
+	}
+	</script>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <update handle="customer_merging_ajaxgrid" />
+    <container name="customer_merging_root">
+        <block class="Axl\MergingCustomer\Block\Adminhtml\Customer\Edit\Tab\View\MergingForm" name="adminhtml.customer.edit.tab.merging.form"/>
+        <block class="Axl\MergingCustomer\Block\Adminhtml\Customer\Edit\Js" name="adminhtml.customer.edit.tab.merging.js" template="Axl_MergingCustomer::js.phtml"/>
+        <!-- <uiComponent name="merging_customer_form" /> -->
+    </container>
+</layout>
