@@ -28,7 +28,6 @@ class MergingForm extends \Magento\Backend\Block\Widget\Form\Generic
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Framework\Data\FormFactory $formFactory
      * @param \Magento\Store\Model\System\Store $systemStore
-     * @param \Exto\StoreCredit\Model\StoreCredit $storeCredit
      * @param array $data
      */
     public function __construct(
