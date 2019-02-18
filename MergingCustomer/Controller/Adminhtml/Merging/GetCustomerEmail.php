@@ -40,6 +40,9 @@ class GetCustomerEmail extends \Magento\Backend\App\Action
      */
     public function execute()
     {
+        if (!$this->getRequest()->isAjax()) {
+            return $this->_redirect('*/*/index');
+        }
         $email = $this->getRequest()->getParam('email');
         $masterEmail = $this->getRequest()->getParam('master_customer');
         $results = [];
