@@ -12,12 +12,4 @@ class Grid extends \Magento\Customer\Controller\Adminhtml\Index
         $resultLayout = $this->resultLayoutFactory->create();
         return $resultLayout;
     }
-
-    /**
-     * @return bool
-     */
-    // protected function _isAllowed()
-    // {
-    //     return $this->_authorization->isAllowed('Exto_StoreCredit::transaction_list');
-    // }
 }

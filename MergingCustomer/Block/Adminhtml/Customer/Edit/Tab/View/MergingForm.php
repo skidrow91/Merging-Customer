@@ -102,47 +102,44 @@ class MergingForm extends \Magento\Backend\Block\Widget\Form\Generic
             '\Axl\MergingCustomer\Block\Adminhtml\Customer\Edit\Renderer\Customer\Email'
         );
 
-        // if ($this->_authorization->isAllowed('Exto_StoreCredit::balance_update')) {
-            $fieldset->addField(
-                'from',
-                'customer_email',
-                ['name' => 'from',
-                    // 'class' => 'validate-number',
-                    'label' => __('From'),
-                    'title' => __('From'),
-                    'required' => true,
-                    // 'note' => __('Please enter customer email. Ex: abc@gmail.com'),
-                ]
-            );
+        $fieldset->addField(
+            'from',
+            'customer_email',
+            ['name' => 'from',
+                'label' => __('From'),
+                'title' => __('From'),
+                'required' => true,
+            ]
+        );
 
-            $fieldset->addField(
-                'merging',
-                'hidden',
-                ['name' => 'from',
-                    'label' => __('From'),
-                    'title' => __('From')
-                ]
-            );
+        $fieldset->addField(
+            'merging',
+            'hidden',
+            ['name' => 'from',
+                'label' => __('From'),
+                'title' => __('From'),
+            ]
+        );
 
-            $customer = $this->_getCustomer();
-            $fieldset->addField(
-                'customer_master_email',
-                'label',
-                [
-                    'name' => 'customer_master_email',
-                    'value' => $customer->getEmail(),
-                    'label' => __('To'),
-                ]
-            );
+        $customer = $this->_getCustomer();
+        $fieldset->addField(
+            'customer_master_email',
+            'label',
+            [
+                'name' => 'customer_master_email',
+                'value' => $customer->getEmail(),
+                'label' => __('To'),
+            ]
+        );
 
-            $fieldset->addField(
-                'merge_customer',
-                'button',
-                [
-                    'name' => 'merge-customer',
-                    'value' => __('Merge Customer'),
-                ]
-            );
+        $fieldset->addField(
+            'merge_customer',
+            'button',
+            [
+                'name' => 'merge-customer',
+                'value' => __('Merge Customer'),
+            ]
+        );
         // }
 
         $form->setUseContainer(true);
@@ -151,7 +148,8 @@ class MergingForm extends \Magento\Backend\Block\Widget\Form\Generic
         return parent::_prepareForm();
     }
 
-    private function _getCustomer() {
+    private function _getCustomer()
+    {
         $customer = $this->customerFactory->create()->load($this->getCustomerId());
         return $customer;
     }
