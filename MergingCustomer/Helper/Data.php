@@ -200,11 +200,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return $results;
         }
 
-        $results = $this->mergePoint();
-        if (!$results['success']) {
-            return $results;
-        }
-
         $results = $this->insertRecording();
         if (!$results['success']) {
             return $results;

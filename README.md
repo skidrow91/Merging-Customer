@@ -19,5 +19,15 @@
         php bin/magento cache:clean
   ~~~~
 
+##### How To Use:
+
+  <img src="https://github.com/skidrow91/Merging-Customer/blob/master/1.png" width="600">
+
+  <img src="https://github.com/skidrow91/Merging-Customer/blob/master/2.png" width="600">
+
+  <img src="https://github.com/skidrow91/Merging-Customer/blob/master/3.png" width="600">
+
+  <img src="https://github.com/skidrow91/Merging-Customer/blob/master/4.png" width="600">
+
 
 
